@@ -1,0 +1,5 @@
+{
+    "HOST": "HADOOP_IP_ADDRES",
+    "PORT": "HADOOP_PORT",
+    "USER": "HADOOP_USER"
+}
