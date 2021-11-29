@@ -106,8 +106,19 @@ class WebHDFSClient:
         directories = _directories.split("/")
 
         for directory in directories:
-            url = f"http://{self.HOST}:{self.PORT}/{self.current_directory}"
 
+            if directory == "..":
+                directories_list = self.current_directory.split('/')
+
+                if directories_list[-2] == "v1":
+                    break
+
+                self.current_directory = "/".join(
+                    directories_list[0:-2]) + "/"
+
+                flag = True
+
+            url = f"http://{self.HOST}:{self.PORT}/{self.current_directory}"
             response = requests.get(url, params=params)
 
             _data = json.loads(response.text)[
